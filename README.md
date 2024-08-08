@@ -18,27 +18,23 @@ The Shipment Discount Calculator is a Java application that processes shipment t
 
 ### Running the Application
 
-- To run the application with a specified input file:
-  mvn compile exec:java -Prun -Dexec.args="src/main/resources/input.txt"
+- The application supports running with the default `input.txt` file located in the `src/main/resources` directory or a user-provided file path through the command line:
+  mvn clean compile exec:java 
 
 ### Running the Tests
 
-- To run the application with a specified input file:
+- To run the test:
   mvn test
 
 ### Design Decisions
 
-- Use of Java NIO for File Operations:
-The java.nio.file package is used for reading input files and handling file paths. This decision was made to leverage the modern, efficient, and scalable I/O capabilities provided by NIO.
+- ShipmentDiscountCalculator class is the main class responsible for reading shipment transactions from an input file and outputting the results after applying discount rules.
 
-- Map Initialization in Static Block:
-Prices and minimum prices for shipments are initialized in a static block within the ShipmentDiscountCalculator class. This ensures that these values are loaded once and available throughout the class without redundant initializations.
+- ShipmentDiscountRule class encapsulates the logic for calculating discounts based on shipment provider, package size, and other criteria. This class makes the code more modular, allowing easy modification or extension of discount rules without affecting the core functionality of the ShipmentDiscountCalculator.
+Prices and minimum prices for shipments are initialized in a static block. This ensures that these values are loaded once and available throughout the class without redundant initializations.
 
-- ShipmentDiscountCalculator class:
-ShipmentDiscountCalculator is the main class of the application. It reads shipment transactions from an input file, applies discount rules, and outputs the results. The class also maintains pricing information for different shipment sizes and providers. It tracks discounts and ensures that the correct discount is applied according to predefined rules.
+- MonthlyDiscountTracking class is used to keep track of discounts and apply rules on a per-month basis. 
 
-- MonthlyDiscountTracking class:
-The MonthlyDiscountTracker class is used to keep track of discounts and apply rules on a per-month basis. 
+- Use of Java NIO for File Operations - the java.nio.file package is used for reading input files and handling file paths.
 
-- Unit Testing with JUnit:
-JUnit is used for unit testing. The test class ShipmentDiscountCalculatorTest captures the output of the main application and compares it with expected output from a file. 
+- Unit Testing with JUnit - the test class ShipmentDiscountCalculatorTest captures the output of the main application and compares it with expected output from a file. 

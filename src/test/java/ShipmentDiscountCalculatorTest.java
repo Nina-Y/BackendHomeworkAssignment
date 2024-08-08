@@ -1,12 +1,10 @@
 import com.example.ShipmentDiscountCalculator;
 import org.junit.Test;
 import static org.junit.Assert.*;
-
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.List;
 
 public class ShipmentDiscountCalculatorTest {
 
