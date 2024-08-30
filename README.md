@@ -18,8 +18,9 @@ The Shipment Discount Calculator is a Java application that processes shipment t
 
 ### Running the Application
 
-- The application supports running with the default `input.txt` file located in the `src/main/resources` directory or a user-provided file path through the command line:
-  mvn clean compile exec:java 
+- The application supports running with the default `input.txt` file located in the `src/main/resources` directory through the command line: mvn clean compile exec:java
+- or a user-provided file path (example): mvn clean compile exec:java -Dexec.args="C:\input2.txt"
+   
 
 ### Running the Tests
 
