@@ -1,14 +1,15 @@
 package com.example;
 
-public class MonthlyDiscountTracker {
-    private double accumulatedDiscount;
+import java.math.BigDecimal;
 
-    public void addDiscount(double discount) {
-        accumulatedDiscount += discount;
+public class MonthlyDiscountTracker {
+    private BigDecimal accumulatedDiscount = BigDecimal.ZERO;
+
+    public void addDiscount(BigDecimal discount) {
+        accumulatedDiscount = accumulatedDiscount.add(discount);
     }
 
-    public double getAccumulatedDiscount() {
+    public BigDecimal getAccumulatedDiscount() {
         return accumulatedDiscount;
     }
 }
-

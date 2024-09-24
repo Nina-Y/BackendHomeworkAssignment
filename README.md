@@ -1,8 +1,8 @@
-# Shipment Discount Calculator
+# Backend Homework Assignment
 
 ## Overview
 
-The Shipment Discount Calculator is a Java application that processes shipment transactions from an input file, calculates discounts based on predefined rules, and outputs the results. The application supports shipments from two providers, LP and MR, and handles different package sizes (S, M, L).
+This Java project processes parcel data and applies discount rules based on parcel size, company, and monthly limits. It handles both valid and invalid parcel entries, ensuring that discount limits are enforced within a given month (10 EUR maximum). The application supports shipments from two providers, LP and MR, and handles different package sizes (S, M, L).
 
 ### Setup
 
@@ -27,15 +27,29 @@ The Shipment Discount Calculator is a Java application that processes shipment t
 - To run the test:
   mvn test
 
-### Design Decisions
+### Program Structure
+The project is organized into several core components to ensure separation of concerns, modularity, and easier maintainability. Below is an overview of the main classes and their responsibilities:
 
-- ShipmentDiscountCalculator class is the main class responsible for reading shipment transactions from an input file and outputting the results after applying discount rules.
+1. ParcelProcessingRunner
+   Role: Entry point of the program.
+2. ParcelParser
+   Role: Handles parsing of the input file and categorization of parcels into valid and invalid entries.
+3. ShipmentDiscountRule
+   Role: Contains the core logic for applying discounts to valid parcels.
+4. MonthlyDiscountTracker
+   Role: Tracks the total amount of discounts applied within a calendar month. Enforces the monthly discount cap (10 EUR per calendar month).
+5. Parcel
+   Role: Data structure representing a parcel with essential information such as date, size, and company.
+6. Enums: ParcelSize and Company
+   ParcelSize: Defines valid parcel sizes (S, M, L).
+   Company: Defines valid companies (LP, MR).
 
-- ShipmentDiscountRule class encapsulates the logic for calculating discounts based on shipment provider, package size, and other criteria. This class makes the code more modular, allowing easy modification or extension of discount rules without affecting the core functionality of the ShipmentDiscountCalculator.
-Prices and minimum prices for shipments are initialized in a static block. This ensures that these values are loaded once and available throughout the class without redundant initializations.
+### Tests
+Key tests include:
 
-- MonthlyDiscountTracking class is used to keep track of discounts and apply rules on a per-month basis. 
-
-- Use of Java NIO for File Operations - the java.nio.file package is used for reading input files and handling file paths.
-
-- Unit Testing with JUnit - the test class ShipmentDiscountCalculatorTest captures the output of the main application and compares it with expected output from a file. 
+1. Small Parcel Discount: Verifies that small parcels (S) receive the correct discount based on the company.
+2. Large Parcel LP Discount: Ensures every third large parcel (L) from LP in a month is fully discounted.
+3. Monthly Discount Limit: Confirms that the total applied discounts do not exceed 10 EUR in a given month.
+4. No Discount for Non-Qualifying Parcels: Ensures parcels that don’t qualify for discounts receive none.
+5. Invalid Parcel Handling: Tests that parcels with invalid sizes, companies, or dates are ignored.
+6. End-to-End Testing: Simulates the complete process from input parsing to output formatting, ensuring correct behavior and cross-platform compatibility.

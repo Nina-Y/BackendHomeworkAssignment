@@ -17,5 +17,10 @@
 2015-02-17 L LP 6.90 -
 2015-02-17 S MR 1.90 0.10
 2015-02-24 L LP 6.90 -
-2015-02-29 CUSPS Ignored
 2015-03-01 S MR 1.50 0.50
+2015-03-01 XS MR Ignored (Invalid size or company)
+2015-03-01 S DPD Ignored (Invalid size or company)
+2015-02-10 DHL Ignored (parts.length != 3)
+2015-02-28 CUSPS Ignored (parts.length != 3)
+2015-02-29 S MR Ignored (Invalid date)
+2015-02-29 CUSPS Ignored (parts.length != 3)
